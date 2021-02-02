@@ -1,0 +1,84 @@
+spring:
+  profiles:
+    active: test
+  resources:
+    static-locations: classpath:/static/
+    add-mappings: true
+  mvc:
+    static-path-pattern: /static/**
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:oracle:thin:@${variables.ip}:1521/${variables.sid}
+    username: test
+    password: test
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+  messages:
+    encoding: UTF-8
+  output:
+    ansi:
+      enabled: ALWAYS
+
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
+#mybatis:
+#  config-location: classpath:mybatis-config.xml
+
+variables:
+  ip: localhost
+  sid: xe
+
+server:
+  port: 80 # Server HTTP port.
+  tomcat:
+    max-threads: 0 # Maximum amount of worker threads.
+    min-spare-threads: 0 # Minimum amount of worker threads.
+    basedir: .
+    accesslog:
+      buffered: false # Buffer output such that it is only flushed periodically.
+      directory: logs # Directory in which log files are created. Can be relative to the tomcat base dir or absolute.
+      enabled: false # Enable access log.
+      file-date-format: .yyyy-MM-dd # Date format to place in log file name.
+      pattern: common # Format pattern for access logs.
+      request-attributes-enabled: true # Set request attributes for IP address, Hostname, protocol and port used for the request.
+      prefix: access # Log file name prefix.
+      rotate: true # Enable access log rotation
+      suffix: .log # Log file name suffix.
+
+---
+spring:
+  profiles: test
+
+server:
+  port: 8080 # Test Server HTTP port.
+  tomcat:
+    max-threads: 100 # Maximum amount of worker threads.
+    min-spare-threads: 25 # Minimum amount of worker threads.
+    accesslog:
+      enabled: true # Enable access log.
+ajp:
+  port: 9090
+
+---
+spring:
+  profiles: prod
+
+server:
+  port: 80 # Production Server HTTP port.
+  tomcat:
+    max-threads: 200 # Maximum amount of worker threads.
+    min-spare-threads: 50 # Minimum amount of worker threads.
+    accesslog:
+      enabled: true # Enable access log.
+ajp:
+  port: 9090
