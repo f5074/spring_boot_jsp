@@ -48,12 +48,12 @@
 				<ul class="nav navbar-nav">
 							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">등록관리<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="drawing/user/drawingPage">도면 등록</a></li>
-									<li><a href="drawing/user/iconPage">Icon 등록</a></li>
-									<li><a href="drawing/user/equipmentPage">장비 등록</a></li>
+									<li><a href="/drawing/user/drawingPage">도면 등록</a></li>
+									<li><a href="/drawing/user/iconPage">Icon 등록</a></li>
+									<li><a href="/drawing/user/equipmentPage">장비 등록</a></li>
 								</ul></li>
-					<li><a href="drawing/user/managementPage">도면-장비 관리</a></li>
-					<li><a href="drawing/user/uploadFilePage">파일 관리</a></li>
+					<li><a href="/drawing/user/managementPage">도면-장비 관리</a></li>
+					<li><a href="/drawing/user/uploadFilePage">파일 관리</a></li>
 				</ul>
 			</div>
 		</div>
