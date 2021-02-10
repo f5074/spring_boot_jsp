@@ -168,14 +168,14 @@ function selectFileList(fileDir) {
 		success : function(result) {
 			$("#fileView").html("<table id='fileTable' class='table no-margin'></table>");
 				$("#fileTable").append("<thead><tr>"
-													+ "<th style='text-align:center'>파일 명</th></tr></thead>");
+                                        +"<th style='text-align:left'>File List</th></tr></thead>");
 				$("#fileTable").append("<tbody>");
 				for (var rowIdx = 0; rowIdx < result.length; rowIdx++) {
 					var fileId = result[rowIdx].fileId;
 					var fileNm = result[rowIdx].fileNm;
 					
 					$("#fileTable").append("<tr>"
-											+ "<td style='text-align:center'>"+ fileNm + "</td>"
+											+ "<td style='text-align:left'> <a href='javascript:linkClick(\""+fileNm+"\");'>"+ fileNm + "</a></td>"
 											+ "</tr>");
 				}
 				$("#fileTable").append("</tbody>");

@@ -175,7 +175,6 @@ function onClickSelectFileList(event) {
 		$('#modal').modal('show');
 		return;
 	}
-
 	event.preventDefault();
 	$('#btnSelectFileList').prop('disabled', true);
 	$.ajax({
@@ -186,10 +185,15 @@ function onClickSelectFileList(event) {
 		},
 		success : function(result) {
 			$('#btnSelectFileList').prop('disabled', false);
+			selectFileList(fileDownloadDirVal);
 		},
 		error : function(e) {
 			$('#btnSelectFileList').prop('disabled', false);
 			alert('error');
 		}
 	});
+}
+
+function linkClick(fileNm) {
+    $('#fileNm').val(fileNm);
 }

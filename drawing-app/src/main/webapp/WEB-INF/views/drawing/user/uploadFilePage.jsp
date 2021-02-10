@@ -3,13 +3,12 @@
 <jsp:include page="/WEB-INF/views/templates/header.jsp" />
 <jsp:include page="/WEB-INF/views/templates/footer.jsp" />
 
-<script src="/static/assets/js/drawing/drawing_common.js" ></script>
+<script src="/static/assets/js/drawing/drawing_common.js?ver=20210211616" ></script>
 <script src="/static/assets/js/drawing/drawing_tootip.js" ></script>
 <script src="/static/assets/js/drawing/drawing_file_upload.js" ></script>
 
 <script>
 	$(document).ready(function() {
-		selectEquipmentList();
 		selectFileList('C:\\DEV\\Downloads\\');
 
 		$('#fileDir').val('C:\\DEV\\Downloads\\');
@@ -56,7 +55,7 @@
 											<input type="button" id="btnUpload" name="btnUpload" class="btn btn-success" value="업로드" />
 										</div>
 									</div>
-									<div class="box-body" style="height: 400px;">
+									<div class="box-body" style="height: 150px;">
 										<div class="table-responsive" style="width:100%; height:100%; overflow:auto">
 											<div>
 												<table class="table no-margin">
@@ -106,24 +105,14 @@
 												</tr>
 											</table>
 										</div>
+										<div>
+                                            <table class="table no-margin">
+                                                <tr>
+                                                    <div id="fileView" class="table-responsive" style="width:100%; height:100%; overflow:auto">
+                                                </tr>
+                                            </table>
+										</div>
 									</div>
-								</div>
-							</div>
-						</div>
-						<!-- .Content -->
-					</div>
-					<!-- .Content Row -->
-					<!-- Content Row -->
-					<div class="row">
-						<!-- Content -->
-						<div class="col-md-12">
-							<div class="box box-danger">
-								<div class="box-header with-border">
-									<h3 class="box-title">File List</h3>
-									<div class="box-tools pull-right"></div>
-								</div>
-								<div class="box-body" style="height: 200px;">
-									<div id="fileView" class="table-responsive" style="width:100%; height:100%; overflow:auto"></div>
 								</div>
 							</div>
 						</div>
