@@ -127,6 +127,46 @@ function onClickDownload(event) {
 	});
 }
 
+//function onClickLocalDownload(event) {
+//	// Valildation Check
+//	var fileDownloadDirVal = document.getElementById("fileDownloadDir").value;
+//	var fileNmVal = document.getElementById("fileNm").value;
+//	if (isEmpty(fileDownloadDirVal)) {
+//		$('#modalContent').html('다운로드 경로가 필요합니다.');
+//		$('#modal').modal('show');
+//		return;
+//	}
+//	if (isEmpty(fileNmVal)) {
+//		$('#modalContent').html('다운로드 파일명이 필요합니다.');
+//		$('#modal').modal('show');
+//		return;
+//	}
+//
+//	event.preventDefault();
+//	$('#btnLocalDownload').prop('disabled', true);
+//	$.ajax({
+//		url : 'beforeDownloadFiles',
+//		method : 'POST',
+//		data : {
+//			fileNm : fileNmVal,
+//			fileDownloadDir : fileDownloadDirVal
+//		},
+//		success : function(result) {
+//			var encFileName = encodeURI(document
+//					.getElementById('fileNm').value);
+//			window.location = 'downloadFiles?fileNm=' + encFileName;
+//
+//			$('#fileNm').val('');
+//			$('#btnLocalDownload').prop('disabled', false);
+//		},
+//		error : function(e) {
+//			$('#modalContent').html(e);
+//			$('#modal').modal('show');
+//			$('#btnLocalDownload').prop('disabled', false);
+//		}
+//	});
+//}
+
 function onClickLocalDownload(event) {
 	// Valildation Check
 	var fileDownloadDirVal = document.getElementById("fileDownloadDir").value;
@@ -144,13 +184,45 @@ function onClickLocalDownload(event) {
 
 	event.preventDefault();
 	$('#btnLocalDownload').prop('disabled', true);
+
+    /* progressbar 정보 */
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var status = $('#status');
+
 	$.ajax({
+        // https://deonggi.tistory.com/57
+        xhr : function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function(evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = Math.floor((evt.loaded / evt.total) * 100);
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                }
+            }, false);
+            return xhr;
+        },
+
 		url : 'beforeDownloadFiles',
 		method : 'POST',
 		data : {
 			fileNm : fileNmVal,
 			fileDownloadDir : fileDownloadDirVal
 		},
+        cache : false,
+        timeout : 600000,
+        beforeSend : function() {
+            $("#pleaseWaitDialog").modal('show');
+            status.empty();
+            var percentVal = '0%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        },
+        complete : function() {
+            $("#pleaseWaitDialog").modal('hide');
+        },
 		success : function(result) {
 			var encFileName = encodeURI(document
 					.getElementById('fileNm').value);

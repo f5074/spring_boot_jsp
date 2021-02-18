@@ -5,7 +5,7 @@
 
 <script src="/static/assets/js/drawing/drawing_common.js?ver=20210211616" ></script>
 <script src="/static/assets/js/drawing/drawing_tootip.js" ></script>
-<script src="/static/assets/js/drawing/drawing_file_upload.js" ></script>
+<script src="/static/assets/js/drawing/drawing_file_upload.js?ver202102180832" ></script>
 
 <script>
 	$(document).ready(function() {

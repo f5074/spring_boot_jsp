@@ -77,11 +77,18 @@ public class DrawingController {
     public List<FileVO> selectFileList(HttpServletRequest request
             , HttpServletResponse response) throws IOException {
         String fileDir = "C:\\DEV\\Downloads\\";
-        if(fileDir.substring(fileDir.length()-1, fileDir.length()) == "/" || fileDir.substring(fileDir.length()-1, fileDir.length()) == "\\") {
 
-        }else {
-            fileDir += "\\";
+        if (request.getParameter("fileDownloadDir") != null){
+            fileDir = request.getParameter("fileDownloadDir");
         }
+        else{
+            if(fileDir.substring(fileDir.length()-1, fileDir.length()) == "/" || fileDir.substring(fileDir.length()-1, fileDir.length()) == "\\") {
+
+            }else {
+                fileDir += "\\";
+            }
+        }
+
         return subDirList(fileDir);
     }
 
@@ -244,6 +251,7 @@ public class DrawingController {
         } catch (Exception ex) {
             throw new RuntimeException("[File Download]" + ex.getMessage());
         } finally {
+            fis.close();
             out.close();
         }
     }
@@ -286,6 +294,7 @@ public class DrawingController {
         } catch (Exception ex) {
             throw new RuntimeException("[File Download]" + ex.getMessage());
         } finally {
+            fis.close();
             out.close();
         }
     }

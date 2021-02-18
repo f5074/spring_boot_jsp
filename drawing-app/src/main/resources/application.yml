@@ -15,14 +15,18 @@ spring:
     username: test
     password: test
 
+  servlet:
+    multipart:
+      max-file-size: 4096MB
+      max-request-size: 4096MB
   http:
     encoding:
       charset: UTF-8
       enabled: true
       force: true
-    multipart:
-      max-file-size: 25MB
-      max-request-size: 25MB
+#    multipart:
+#      max-file-size: 4096MB
+#      max-request-size: 4096MB
   messages:
     encoding: UTF-8
   output:
@@ -43,6 +47,9 @@ server:
   tomcat:
     max-threads: 0 # Maximum amount of worker threads.
     min-spare-threads: 0 # Minimum amount of worker threads.
+    max-http-post-size: 30000000
+    max-post-size: 30000000
+    max-swallow-size: 30000000
     basedir: .
     accesslog:
       buffered: false # Buffer output such that it is only flushed periodically.
@@ -64,6 +71,9 @@ server:
   tomcat:
     max-threads: 100 # Maximum amount of worker threads.
     min-spare-threads: 25 # Minimum amount of worker threads.
+    max-http-post-size: 30000000
+    max-post-size: 30000000
+    max-swallow-size: 30000000
     accesslog:
       enabled: true # Enable access log.
 ajp:
@@ -72,12 +82,18 @@ ajp:
 ---
 spring:
   profiles: prod
-
+  servlet:
+    multipart:
+      max-file-size: 4096MB
+      max-request-size: 4096MB
 server:
   port: 80 # Production Server HTTP port.
   tomcat:
     max-threads: 200 # Maximum amount of worker threads.
     min-spare-threads: 50 # Minimum amount of worker threads.
+    max-http-post-size: 30000000
+    max-post-size: 30000000
+    max-swallow-size: 30000000
     accesslog:
       enabled: true # Enable access log.
 ajp:
