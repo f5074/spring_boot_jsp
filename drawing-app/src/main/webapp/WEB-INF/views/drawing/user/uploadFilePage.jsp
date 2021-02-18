@@ -5,12 +5,12 @@
 
 <script src="/static/assets/js/drawing/drawing_common.js?ver=20210211616" ></script>
 <script src="/static/assets/js/drawing/drawing_tootip.js" ></script>
-<script src="/static/assets/js/drawing/drawing_file_upload.js?ver202102180832" ></script>
+<script src="/static/assets/js/drawing/drawing_file_upload.js?ver202102181340" ></script>
 
 <script>
 	$(document).ready(function() {
 		selectFileList('C:\\DEV\\Downloads\\');
-
+        $('#btnDownload').hide();
 		$('#fileDir').val('C:\\DEV\\Downloads\\');
 		$('#fileDownloadDir').val('C:\\DEV\\Downloads\\');
 
@@ -50,9 +50,9 @@
 							<div class="col-md-12">
 								<div class="box box-danger">
 									<div class="box-header with-border">
-										<h3 class="box-title">파일 업로드</h3>
+										<h3 class="box-title">File Upload</h3>
 										<div class="box-tools pull-right">
-											<input type="button" id="btnUpload" name="btnUpload" class="btn btn-success" value="업로드" />
+											<input type="button" id="btnUpload" name="btnUpload" class="btn btn-success" value="Upload" />
 										</div>
 									</div>
 									<div class="box-body" style="height: 150px;">
@@ -84,15 +84,15 @@
 						<div class="col-md-12">
 							<div class="box box-danger">
 								<div class="box-header with-border">
-									<h3 class="box-title">파일 다운로드</h3>
+									<h3 class="box-title">File Download</h3>
 									<div class="box-tools pull-right">
 										<input type="button" id="btnDownload" name="btnDownload" class="btn btn-danger" value="다운로드">
-										<input type="button" id="btnLocalDownload" name="btnLocalDownload" class="btn btn-danger" value="Local 다운로드">
-										<input type="button" id="btnSelectFileList" name="btnSelectFileList" class="btn btn-danger" value="Local FileList">
+										<input type="button" id="btnLocalDownload" name="btnLocalDownload" class="btn btn-danger" value="Download">
+										<input type="button" id="btnSelectFileList" name="btnSelectFileList" class="btn btn-danger" value="FileList">
 									</div>
 								</div>
-								<div class="box-body" style="height: 400px;">
-									<div class="table-responsive" style="width:100%; height:100%; overflow:auto">
+								<div class="box-body" style="height: 450px;">
+									<div>
 										<div>
 											<table class="table no-margin">
 												<tr>
@@ -107,8 +107,11 @@
 										</div>
 										<div>
                                             <table class="table no-margin">
+                                                <thead><tr><th style='text-align:left'>File List</th></tr></thead>
+                                            </table>
+                                            <table class="table no-margin">
                                                 <tr>
-                                                    <div id="fileView" class="table-responsive" style="width:100%; height:100%; overflow:auto">
+                                                    <div id="fileView" class="table-responsive" style="width:100%; height:65%; overflow:auto">
                                                 </tr>
                                             </table>
 										</div>

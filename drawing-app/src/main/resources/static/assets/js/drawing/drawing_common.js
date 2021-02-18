@@ -167,8 +167,8 @@ function selectFileList(fileDir) {
 		},
 		success : function(result) {
 			$("#fileView").html("<table id='fileTable' class='table no-margin'></table>");
-				$("#fileTable").append("<thead><tr>"
-                                        +"<th style='text-align:left'>File List</th></tr></thead>");
+//				$("#fileTable").append("<thead><tr>"
+//                                        +"<th style='text-align:left'>File List</th></tr></thead>");
 				$("#fileTable").append("<tbody>");
 				for (var rowIdx = 0; rowIdx < result.length; rowIdx++) {
 					var fileId = result[rowIdx].fileId;
